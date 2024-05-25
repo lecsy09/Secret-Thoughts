@@ -1,0 +1,35 @@
+namespace secret_thoughts
+{
+    public partial class ReadHistory : Form
+    {
+        public string title { get; set; }
+        public string message {  get; set; }
+        public string date { get; set; }
+        public ReadHistory()
+        {
+            InitializeComponent();
+        }
+
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void titleread_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dateread_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void backbtn_Click(object sender, EventArgs e)
+        {
+            History history = new History();
+            history.Show();
+            this.Hide();
+        }
+    }
+}
