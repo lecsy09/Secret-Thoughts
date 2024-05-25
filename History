@@ -1,0 +1,65 @@
+namespace secret_thoughts
+{
+    
+    public partial class History : Form
+    {
+        public string title { get; set; }
+        public string Message { get; set; }
+        public DateTime date { get; set; }
+
+        public DataTable table { get; set; }
+        public History()
+        {
+            InitializeComponent();
+            table = new DataTable();
+            table.Columns.Add("Date", typeof(String));
+            table.Columns.Add("Title", typeof(String));
+            table.Columns.Add("Message", typeof(String));
+
+        }
+  
+        private void History_Load(object sender, EventArgs e)
+        {
+
+            dataGridView1.DataSource = table;
+            dataGridView1.Columns["Message"].Visible = false;
+            dataGridView1.Columns["Date"].Width = 130;
+            dataGridView1.Columns["Title"].Width = 330;
+        }
+
+        private void button1_Click(object sender, EventArgs e)//Read button
+        {
+            int index = dataGridView1.CurrentCell.RowIndex;
+            if(index >= 0)
+            {
+                date = Convert.ToDateTime(table.Rows[index]["Date"]);
+                title = table.Rows[index]["Title"].ToString();
+                Message = table.Rows[index]["Message"].ToString();
+
+                ReadHistory read = new ReadHistory();
+
+                
+            }
+        }
+
+        private void deletbttn_Click(object sender, EventArgs e)
+        {
+            int index = dataGridView1.CurrentCell.RowIndex;
+            
+            table.Rows[index].Delete();
+            table.AcceptChanges();
+        }
+
+        private void hisTable_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            
+        }
+
+        private void backbtn_Click(object sender, EventArgs e)
+        {
+            Form4 form4 = new Form4();
+            this.Hide();
+            form4.Show();
+        }
+    }
+}
